@@ -81,7 +81,16 @@ class Window:
 
         if path.exists('config.json') == False:
             with open('config.json', 'x') as File:
-                json.dump({"token": token, prefix: prefix}, File, indent=4)
+                json.dump({"token": token, prefix: prefix,    "guild template": {
+                    "commands": {},
+                    "due_time": 3,
+                    "music": {},
+                    "prefix": "!",
+                    "reminders": {},
+                    "ticket_active": False,
+                    "voice_channel_active": False
+                    },
+                }, File, indent=4)
         with codecs.open('config.json','r', encoding='utf-8-sig') as File:
             self.config = json.load(File)
         self.config["token"] = token
@@ -96,11 +105,12 @@ class Window:
     def quit(self):
         return asyncio.get_event_loop().run_until_complete(self.async_quit())
     
-    def start_bot(self):
+    async def start_bot(self):
         self.window.destroy()
         from bot import main
         print('starting bot')
-        main.run()
+        await main.run()
+        print('BOT ALEKSANDER HASDHJ KASDKØ JA')
 
     async def async_quit(self):
         async with EchoWebsocket() as echo:

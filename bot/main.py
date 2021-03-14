@@ -1,4 +1,4 @@
- #This is the experimental version of the bot!
+#This is the experimental version of the bot!
 import discord, datetime, os
 from discord.ext import commands, tasks
 from bot import utils
