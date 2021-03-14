@@ -1,4 +1,5 @@
-import websockets, asyncio, json, codecs
+import websockets, asyncio, json, codecs, os
+from time import time, sleep
 import tkinter as tk
 from websockets import connect
 from os import path
@@ -51,11 +52,26 @@ class Window:
         prefix_label = tk.Label(self.window, text='Prefix')
         prefix = tk.Entry(master= self.window)
         submit = tk.Button(master=self.window, text='Save', command=lambda: self.save_settings(token.get(), prefix.get()))
+        dependencies_install = tk.Button(master=self.window, text='Install dependencies', command=lambda: self.install_dependencies())
         token_label.grid(column=0, row=0)
         token.grid(column=1, row=0)
         prefix_label.grid(column=0, row=1)
         prefix.grid(column=1, row=1)
-        submit.grid(column=1, row=2)
+        submit.grid(sticky=tk.W, column=1, row=2)
+        dependencies_install.grid(column=0, row=2)
+
+    def install_dependencies(self):
+        self.window_initialise("Installing dependencies", "500x50")
+        
+        label = tk.Label(self.window, text="Installing dependencies, please wait")
+        label.pack()
+        self.window.after(5000, lambda: self.please_wait())
+
+    
+    def please_wait(self):
+        os.system("pip install .")
+        self.welcome_page()
+
 
     def save_settings(self, token, prefix):
         print(token)
