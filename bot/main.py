@@ -140,4 +140,5 @@ async def prefix(ctx):
 
 
 def run():
+    print("Bot initiated")
     bot.run(token)

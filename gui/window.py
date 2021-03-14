@@ -19,6 +19,7 @@ class EchoWebsocket:
 
 class Window:
     def __init__(self):
+        print("GUI initiated")
         self.window_initialise()
         #self.loop = asyncio.get_event_loop()
     
