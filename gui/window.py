@@ -50,6 +50,7 @@ class Window:
         token_label = tk.Label(self.window, text='Token')
         token = tk.Entry(master= self.window)
         prefix_label = tk.Label(self.window, text='Prefix')
+        back = tk.Button(master=self.window, text='Back', command=lambda: self.welcome_page())
         prefix = tk.Entry(master= self.window)
         submit = tk.Button(master=self.window, text='Save', command=lambda: self.save_settings(token.get(), prefix.get()))
         dependencies_install = tk.Button(master=self.window, text='Install dependencies', command=lambda: self.install_dependencies())
@@ -57,7 +58,8 @@ class Window:
         token.grid(column=1, row=0)
         prefix_label.grid(column=0, row=1)
         prefix.grid(column=1, row=1)
-        submit.grid(sticky=tk.W, column=1, row=2)
+        submit.grid(column=1, row=2)
+        back.grid(sticky=tk.W, column=1, row=2)
         dependencies_install.grid(column=0, row=2)
 
     def install_dependencies(self):
@@ -110,19 +112,3 @@ class Window:
 
     def run(self):
         self.window.mainloop()
-
-"""
-Example
-class mtest:
-    def __init__(self):
-        self.wws = EchoWebsocket()
-        self.loop = asyncio.get_event_loop()
-
-    def get_ticks(self):
-        return self.loop.run_until_complete(self.__async__get_ticks())
-
-    async def __async__get_ticks(self):
-        async with self.wws as echo:
-            await echo.send(json.dumps({'ticks_history': 'R_50', 'end': 'latest', 'count': 1}))
-            return await echo.receive()
-"""
