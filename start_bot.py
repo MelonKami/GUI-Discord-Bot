@@ -1,8 +1,6 @@
-from bot import main
+#from bot import main
+#main.run()
 from gui import window
-
-main.run()
 
 gui = window.Window()
 gui.run()
-

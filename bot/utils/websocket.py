@@ -1,5 +1,4 @@
-import discord, asyncio, websockets
-from discord.ext import commands, tasks
+import asyncio, websockets
 
 async def websocket_ping(websocket, path):
     name = await websocket.recv()
@@ -10,7 +9,7 @@ async def websocket_ping(websocket, path):
     await websocket.send(greeting)
     print(f"> {greeting}")
 
-class Websocket(commands.Cog):
+class Websocket:
     def __init__(self):
         print('Initialising Websocket server...')
 
