@@ -101,7 +101,6 @@ class Window:
         from bot import main
         print('starting bot')
         main.run()
-        print('bot started')
 
     async def async_quit(self):
         async with EchoWebsocket() as echo:
