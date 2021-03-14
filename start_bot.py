@@ -3,7 +3,7 @@ import os
 #main.run()
 
 print("Installing dependencies")
-os.system("pip install .")
+#os.system("pip install .")
 print("Starting bot")
 
 from gui import window
