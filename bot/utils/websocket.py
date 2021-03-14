@@ -1,7 +1,7 @@
 import discord, asyncio, websockets
 from discord.ext import commands, tasks
 
-async def websocket_ping(self, websocket, path):
+async def websocket_ping(websocket, path):
     name = await websocket.recv()
     print(f"< {name}")
 
@@ -13,9 +13,8 @@ async def websocket_ping(self, websocket, path):
 class Websocket(commands.Cog):
     def __init__(self):
         print('Initialising Websocket server...')
-        self.server.start()
-        print('Websocket server seamingly started, no clue idk find out lol')
-    
-    @tasks.loop()
-    async def server(self):
-        websockets.serve(websocket_ping, "0.0.0.0", 8765)
+
+        server = websockets.serve(websocket_ping, "0.0.0.0", 8765)
+        asyncio.get_event_loop().run_until_complete(server)
+
+        print("Websocket server online")
